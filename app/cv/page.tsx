@@ -67,7 +67,7 @@ export default function Page() {
               deployment. <br />
               • Successfully launched, resulting in analysis 10 times faster than the previous
               method, contributing to the medal haul in the Tokyo Olympics. <br />
-              • Managed state using Context API. <br2 />
+              • Managed state using Context API. <br />
               • Developed an algorithm to provide users with estimated upload and analysis times
               based on the binary size of videos. <br />• Implemented a user-friendly interface
               using React, TypeScript, and Styled-Components. <br />
