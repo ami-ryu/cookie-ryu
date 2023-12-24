@@ -22,9 +22,8 @@ export default function Page() {
               <div>2022-Current</div>
             </div>
             <div className="prose max-w-none text-sm text-gray-900 dark:text-gray-400">
-              𝐌𝐎𝐌𝐄𝐍𝐓𝐈𝐂𝐀 - 𝐃𝐢𝐠𝐢𝐭𝐚𝐥 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐛𝐥𝐞𝐬 𝐬𝐞𝐫𝐯𝐢𝐜𝐞
-              <br />
-              𝐂𝐨𝐧𝐭𝐞𝐧𝐭𝐬 𝐌𝐚𝐧𝐚𝐠𝐞𝐫 𝐒𝐲𝐬𝐭𝐞𝐦, 𝐍𝐅𝐓 𝐌𝐢𝐧𝐭𝐢𝐧𝐠 𝐀𝐝𝐦𝐢𝐧
+              • 𝐌𝐎𝐌𝐄𝐍𝐓𝐈𝐂𝐀 - 𝐃𝐢𝐠𝐢𝐭𝐚𝐥 𝐂𝐨𝐥𝐥𝐞𝐜𝐭𝐢𝐛𝐥𝐞𝐬 𝐬𝐞𝐫𝐯𝐢𝐜𝐞
+              <br />• 𝐂𝐨𝐧𝐭𝐞𝐧𝐭𝐬 𝐌𝐚𝐧𝐚𝐠𝐞𝐫 𝐒𝐲𝐬𝐭𝐞𝐦, 𝐍𝐅𝐓 𝐌𝐢𝐧𝐭𝐢𝐧𝐠 𝐀𝐝𝐦𝐢𝐧
             </div>
           </div>
           <div className="space-y-3 pt-9">
