@@ -1,0 +1,52 @@
+---
+title: TypeScript Distributive Conditional Types (분배 조건부 타입)
+date: '2024-05-29'
+tags: ['typescript', 'union-type']
+draft: false
+summary: TypeScript Distributive Conditional Types 을 사용할 때는, square brackets 을 사용하는게 좋다. never 타입은 모든 타입의 서브타입으로 간주되므로, never | string 은 string 과 동일하게 취급된다.
+---
+
+# TypeScript
+
+- 한국어로는 "분배 조건부 타입"
+- [TypeScript 공식문서](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types)
+
+## Distributive Conditional Types (분배 조건부 타입)
+
+- 제네릭 타입 위에서 조건부 타입은 유니언 타입을 만나면 분산적으로 동작한다.
+- 아래와 같이 유니언 타입을 넘기면, 조건부 타입은 유니언의 "각 멤버에 적용" 된다. (분배)
+
+```typescript
+type ToArray<Type> = Type extends any ? Type[] : never
+
+type StrArrOrNumArr = ToArray<string | number>
+// -> type StrArrOrNumArr = string[] | number[]
+```
+
+- 한가지 더 예시
+- 유니언 타입(number | string)으로 넘기면, 조건부 타입은 유니언의 각 멤버에 적용되므로, false | true 가 되고, 이는 boolean 타입이다.
+
+```typescript
+type IsString<Type> = Type extends string ? true : false
+
+type A = IsString<number | string>
+// -> type A = boolean
+```
+
+### `never` 타입을 주의하자!
+
+- `never` 타입은 모든 타입의 서브타입으로 간주된다.
+- `string | never` 는 `string` 이다. 아래 조건부 타입 예시를 보자.
+
+```typescript
+type IsNever<T> = T extends never ? true : false
+
+type A = IsNever<never | string>
+// -> type A = false
+```
+
+type A 는 IsNever<never> | IsNever<string> 을 해서 true | false 가 반환되어, type A = boolean 타입이지 않을까 예상했다.
+하지만, 실제로는 type A = false 이다.
+never | string 은 string 을 간주되기 때문에, 애초에 IsNever<string> 으로 계산되어 false 가 반환되기 때문이다.
+
+never 는 모든 타입의 서브타입이므로, never | string 은 그냥 string 타입이라는 점을 명심하자!
