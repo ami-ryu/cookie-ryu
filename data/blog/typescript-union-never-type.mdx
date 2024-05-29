@@ -45,8 +45,8 @@ type A = IsNever<never | string>
 // -> type A = false
 ```
 
-type A 는 IsNever<never> | IsNever<string> 을 해서 true | false 가 반환되어, type A = boolean 타입이지 않을까 예상했다.
+type A 는 `IsNever<never> | IsNever<string>` 을 해서 true | false 가 반환되어, type A = boolean 타입이지 않을까 예상했다.
 하지만, 실제로는 type A = false 이다.
-never | string 은 string 을 간주되기 때문에, 애초에 IsNever<string> 으로 계산되어 false 가 반환되기 때문이다.
+never | string 은 string 을 간주되기 때문에, 애초에 `IsNever<string>` 으로 계산되어 false 가 반환되기 때문이다.
 
 never 는 모든 타입의 서브타입이므로, never | string 은 그냥 string 타입이라는 점을 명심하자!
