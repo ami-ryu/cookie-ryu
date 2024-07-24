@@ -1,0 +1,98 @@
+---
+title: Scaffolding File Generator 스크립트 작성하기
+date: '2024-07-25'
+tags: ['scaffolding', 'generator', 'workflow', 'shell', 'script', 'yeoman']
+draft: false
+summary: Shell Script로 스캐폴딩 파일 제너레이터를 직접 구현해보자.
+---
+
+# WEB'S SCAFFOLDING TOOL
+
+- 프로젝트 기본 구조를 잡을 때, 기본이 되는 스캐폴딩 파일들을 생성하기 위해 보통은 Yeoman 이라는 라이브러리를 많이 쓴다.
+- 현재 내가 개발중인 프로젝트에서도 반복되는 스캐폴딩 파일 생성 작업이 필요해서, 직접 쉘 스크립트를 간단히 작성해보기로 했다.
+
+# 배경
+
+- 현 프로젝트에서는, 컴포넌트 폴더를 만들고 그 하위에 컴포넌트 파일, 테스트 파일, 스토리북 파일 등... 총 n개의 파일들을 한 셋트로 만들어야 했다. 매번 반복되는 작업에 지칠것 같은 생각이 들어서, 간단히 생성할 컴포넌트명을 받으면 필요한 파일을 자동 생성해주고, 파일 내부에는 필수 코드를 미리 심어두는 스크립트를 만들었다.
+
+## 스크립트 실행
+
+```
+$ ./create-component componentName
+```
+
+이와 같이 폴더명은 카멜케이스로 받도록 했고 (각 프로젝트 컨벤션에 따라 다를것이다), 하위의 각 파일들은 대문자로 시작하거나 소문자로 시작하는등 컨벤션이 다르기 때문에, 스크립트에서 대/소문자를 변환하여 적절히 사용하도록 했다.
+
+## 스크립트 내용
+
+```
+#!/bin/bash
+
+# 첫 번째 인자로 컴포넌트 이름을 받습니다.
+COMPONENT_NAME=$1
+
+# 인자가 없을 경우 에러 메시지를 출력하고 종료합니다.
+if [ -z "$COMPONENT_NAME" ]; then
+  echo "컴포넌트 이름을 입력하세요."
+  exit 1
+fi
+
+# 소문자로 변환
+COMPONENT_DIR_NAME=$(echo "$COMPONENT_NAME" | tr '[:upper:]' '[:lower:]')
+
+# 컴포넌트 폴더 경로를 설정합니다.
+COMPONENT_DIR="./src/components/$COMPONENT_DIR_NAME"
+
+# 컴포넌트 폴더가 이미 존재할 경우 에러 메시지를 출력하고 종료합니다.
+if [ -d "$COMPONENT_DIR" ]; then
+  echo "이 컴포넌트는 이미 존재합니다."
+  exit 1
+fi
+
+# 컴포넌트 폴더를 생성합니다.
+mkdir -p $COMPONENT_DIR
+
+# 첫 문자를 대문자로 변환
+COMPONENT_CLASS_NAME=$(echo "$COMPONENT_NAME" | awk '{print toupper(substr($0, 1, 1)) tolower(substr($0, 2))}')
+
+# 파일 생성
+cat <<EOF > $COMPONENT_DIR/${COMPONENT_CLASS_NAME}.tsx
+import React from 'react';
+
+interface ${COMPONENT_CLASS_NAME}Props {}
+
+const ${COMPONENT_CLASS_NAME}: React.FC<${COMPONENT_CLASS_NAME}Props> = () => {
+    return <div>${COMPONENT_CLASS_NAME}</div>;
+};
+
+export default ${COMPONENT_CLASS_NAME};
+EOF
+
+cat <<EOF > $COMPONENT_DIR/${COMPONENT_DIR_NAME}.css.ts
+import { css } from '@emotion/react';
+
+export const ${COMPONENT_DIR_NAME}Styles = css\`\`;
+EOF
+
+cat <<EOF > $COMPONENT_DIR/${COMPONENT_CLASS_NAME}.stories.tsx
+import React from 'react';
+import { Meta, Story } from '@storybook/react';
+import ${COMPONENT_CLASS_NAME} from './${COMPONENT_CLASS_NAME}';
+
+export default {
+    title: 'Components/${COMPONENT_CLASS_NAME}',
+    component: ${COMPONENT_CLASS_NAME},
+} as Meta;
+
+const Template: Story = (args) => <${COMPONENT_CLASS_NAME} {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {};
+EOF
+
+cat <<EOF > $COMPONENT_DIR/index.ts
+export { default } from './${COMPONENT_CLASS_NAME}';
+EOF
+
+echo "${COMPONENT_NAME} 컴포넌트가 생성되었습니다."
+```
