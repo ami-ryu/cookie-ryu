@@ -21,10 +21,14 @@ export default function Page() {
               <h2 className="text-lg font-bold leading-8 tracking-tight">SUMMARY</h2>
             </div>
             <div className="prose max-w-none text-sm text-gray-900 dark:text-gray-400">
-              • Software Engineer with 8+ years of experience in developing front-end and UI/UX of various products.
-              <br />• Experience in working with diverse professionals from designers, marketers, and product managers to various domain experts including AI researchers, Entertainment specialists, and Car designers.
+              • Software Engineer with 8+ years of experience in developing front-end and UI/UX of
+              various products.
+              <br />• Experience in working with diverse professionals from designers, marketers,
+              and product managers to various domain experts including AI researchers, Entertainment
+              specialists, and Car designers.
               <br />• Favorite keywords: Automation, Business-driven, Collaboration.
-              <br />• Proficient in TypeScript, React, Next.js, Testing, Design Tools, HTML/CSS, Node.js, CI/CD and Python.
+              <br />• Proficient in TypeScript, React, Next.js, Testing, Design Tools, HTML/CSS,
+              Node.js, CI/CD and Python.
             </div>
           </div>
           <br />
