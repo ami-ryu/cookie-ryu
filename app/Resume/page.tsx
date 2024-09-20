@@ -21,16 +21,13 @@ export default function Page() {
               <h2 className="text-lg font-bold leading-8 tracking-tight">SUMMARY</h2>
             </div>
             <div className="prose max-w-none text-sm text-gray-900 dark:text-gray-400">
-              • Software Engineer with 8+ years of experience in web front-end, server, ui/ux and
-              automation.
-              <br />• Experience in working with diverse professionals from designers, AI
-              researchers, product managers, and marketers, to business/strategy experts.
-              <br />• Favorite keywords: user-centric, business-driven, optimization, automation and
-              collaborative.
-              <br />• Proficient in TypeScript, Next.js, Testing Tools, HTML, CSS, NodeJS and
-              Python.
+              • Software Engineer with 8+ years of experience in developing front-end and UI/UX of various products.
+              <br />• Experience in working with diverse professionals from designers, marketers, and product managers to various domain experts including AI researchers, Entertainment specialists, and Car designers.
+              <br />• Favorite keywords: Automation, Business-driven, Collaboration.
+              <br />• Proficient in TypeScript, React, Next.js, Testing, Design Tools, HTML/CSS, Node.js, CI/CD and Python.
             </div>
           </div>
+          <br />
           <div className="space-y-3">
             <h2 className="text-lg font-bold leading-8 tracking-tight">EXPERIENCE</h2>
             <div>
@@ -148,7 +145,6 @@ export default function Page() {
               <br />• Migrated existing codebase to React and Redux for reusable components and
               logic.
               <br />• Improved performance, speed, and development productivity through refactoring.
-              <br />
               <br />
             </div>
           </div>

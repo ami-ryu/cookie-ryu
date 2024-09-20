@@ -11,10 +11,10 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   // mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'developercookie28@gmail.com',
+  email: 'r.woorim@gmail.com',
   github: 'https://github.com/ami-ryu',
   youtube: 'https://www.youtube.com/@developercookie',
-  linkedin: 'https://www.linkedin.com/in/woolimryu/',
+  linkedin: 'https://www.linkedin.com/in/woorimryu/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
